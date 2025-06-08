@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of your image URLs
     // Replace these placeholder URLs with your actual image paths
     const images = [
-        'https://via.placeholder.com/200/FF5733/FFFFFF?text=Image+1',
-        'https://via.placeholder.com/200/33FF57/FFFFFF?text=Image+2',
-        'https://via.placeholder.com/200/3357FF/FFFFFF?text=Image+3',
-        'https://via.placeholder.com/200/FFFF33/000000?text=Image+4',
-        'https://via.placeholder.com/200/FF33FF/FFFFFF?text=Image+5',
+        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img1.jpg',
+        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img2.png',
+        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img3.jpg',
+        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img4.jpg',
+        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img5.png',
         'https://via.placeholder.com/200/33FFFF/000000?text=Image+6',
         'https://via.placeholder.com/200/FF0000/FFFFFF?text=Image+7',
         'https://via.placeholder.com/200/00FF00/FFFFFF?text=Image+8',
