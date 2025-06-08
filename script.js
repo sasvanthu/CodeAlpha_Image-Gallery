@@ -6,7 +6,14 @@ const carouselItems = Array.from(carousel.querySelectorAll('.carousel__item img'
 
 let currentIndex = 0;
 
-// Open lightbox on image click
+// Position items in 3D circle
+const totalItems = carouselItems.length;
+const angle = 360 / totalItems;
+carouselItems.forEach((img, i) => {
+  img.parentElement.style.transform = `rotateY(${angle * i}deg) translateZ(400px)`;
+});
+
+// Open lightbox
 carouselItems.forEach((img, i) => {
   img.addEventListener('click', e => {
     e.stopPropagation();
@@ -18,46 +25,40 @@ carouselItems.forEach((img, i) => {
 function openLightbox(index) {
   lightboxImg.src = carouselItems[index].src;
   lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden'; // prevent background scroll
+  document.body.style.overflow = 'hidden';
   carousel.style.animationPlayState = 'paused';
 }
 
+// Close lightbox with animation
 function closeLightbox() {
-  lightbox.classList.remove('active');
-  lightboxImg.src = '';
-  document.body.style.overflow = '';
-  carousel.style.animationPlayState = 'running';
+  lightbox.classList.add('closing');
+  setTimeout(() => {
+    lightbox.classList.remove('active', 'closing');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+    carousel.style.animationPlayState = 'running';
+  }, 300);
 }
 
-// Close on close button or clicking outside image
+// Close on button or background
 closeBtn.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => {
-  if (e.target === lightbox) closeLightbox();
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
 });
 
-// Keyboard controls for lightbox
+// Keyboard navigation
 document.addEventListener('keydown', e => {
   if (!lightbox.classList.contains('active')) return;
 
   if (e.key === 'Escape') {
     closeLightbox();
-  }
-  else if (e.key === 'ArrowRight') {
+  } else if (e.key === 'ArrowRight') {
     currentIndex = (currentIndex + 1) % carouselItems.length;
-    lightboxImg.src = carouselItems[currentIndex].src;
-  }
-  else if (e.key === 'ArrowLeft') {
+    openLightbox(currentIndex);
+  } else if (e.key === 'ArrowLeft') {
     currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-    lightboxImg.src = carouselItems[currentIndex].src;
-  }
-});
-
-// Pause carousel spin on hover
-carousel.addEventListener('mouseenter', () => {
-  carousel.style.animationPlayState = 'paused';
-});
-carousel.addEventListener('mouseleave', () => {
-  if (!lightbox.classList.contains('active')) {
-    carousel.style.animationPlayState = 'running';
+    openLightbox(currentIndex);
   }
 });
