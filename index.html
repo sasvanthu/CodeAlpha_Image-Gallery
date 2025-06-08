@@ -1,45 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dark Image Gallery</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* --- DARK THEME RESET --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* --- HEADER --- */
+    .headerText {
+      padding: 20px;
+      text-align: center;
+    }
+    .headerText h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* --- FULLSCREEN OVERLAY --- */
+    .fullImageClass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+    .fullImageClass img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .fullImageClass #crossIcon {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* --- THUMBNAIL GALLERY --- */
+    .imageGallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .imageGallery img {
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s, filter 0.3s;
+      filter: brightness(0.9);
+    }
+    .imageGallery img:hover {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>🌌 Dark Image Gallery</h1>
-
-  <div class="filter-buttons">
-    <button data-filter="all">All</button>
-    <button data-filter="nature">Nature</button>
-    <button data-filter="city">City</button>
+  <div class="headerText">
+    <h1>Image Gallery</h1>
   </div>
 
-  <div class="gallery">
-    <div class="gallery-item" data-category="nature">
-      <img src="images/img3.jpg" alt="Nature Image 1" />
-    </div>
-    <div class="gallery-item" data-category="city">
-      <img src="images/img1.jpg" alt="City Image 1" />
-    </div>
-    <div class="gallery-item" data-category="nature">
-      <img src="images/img3.jpg" alt="Nature Image 2" />
-    </div>
-    <div class="gallery-item" data-category="nature">
-      <img src="images/img4.jpg" alt="Nature Image 3" />
-    </div>
+  <!-- Fullscreen overlay -->
+  <div class="fullImageClass" id="fullImageBox">
+    <span id="crossIcon" onclick="closeFullImage()">✕</span>
+    <img id="fullImage" src="" alt="Expanded view">
   </div>
 
-  <div class="lightbox" id="lightbox">
-    <span class="close" id="closeBtn">&times;</span>
-    <img class="lightbox-img" id="lightboxImg" />
-    <div class="navigation">
-      <span class="prev" id="prevBtn">&#10094;</span>
-      <span class="next" id="nextBtn">&#10095;</span>
-    </div>
+  <!-- Thumbnail grid with 4 images -->
+  <div class="imageGallery">
+    <img src="images/img1.jpg" alt="Image 1" onclick="openFullImage(this.src)">
+    <img src="images/img2.jpg" alt="Image 2" onclick="openFullImage(this.src)">
+    <img src="images/img3.jpg" alt="Image 3" onclick="openFullImage(this.src)">
+    <img src="images/img4.jpg" alt="Image 4" onclick="openFullImage(this.src)">
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const fullBox = document.getElementById('fullImageBox');
+    const fullImg = document.getElementById('fullImage');
+
+    function openFullImage(src) {
+      fullImg.src = src;
+      fullBox.style.display = 'flex';
+    }
+
+    function closeFullImage() {
+      fullBox.style.display = 'none';
+      fullImg.src = '';
+    }
+
+    // Also close on ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && fullBox.style.display === 'flex') {
+        closeFullImage();
+      }
+    });
+  </script>
+
 </body>
 </html>
