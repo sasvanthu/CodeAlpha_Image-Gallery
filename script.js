@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const caption = document.querySelector('.caption');
 
     // --- IMPORTANT: Update this with the actual path to your logo ---
-    const logoSrc = 'images/your-logo.png';
+    const logoSrc = 'image/images.png';
     document.querySelector('.gallery-logo').src = logoSrc;
 
     // Array of your image URLs
