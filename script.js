@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of your image URLs
     // Replace these placeholder URLs with your actual image paths
     const images = [
-        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img1.jpg',
+        'https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F414612%2Fpexels-photo-414612.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-souvenirpixels-414612.jpg%26fm%3Djpg&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbeautiful%2F&docid=B51x0PBR9KNzvM&tbnid=oXTudgfT3pqXSM&vet=12ahUKEwj-m_f2iuKNAxXvT2wGHQJVBagQM3oECBkQAA..i&w=5306&h=3770&hcb=2&ved=2ahUKEwj-m_f2iuKNAxXvT2wGHQJVBagQM3oECBkQAA',
         'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img2.png',
         'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img3.jpg',
         'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img4.jpg',
