@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const caption = document.querySelector('.caption');
 
     // --- IMPORTANT: Update this with the actual path to your logo ---
-    const logoSrc = 'image/images.png';
+    const logoSrc = 'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/3e202a72af43bd5777493176ff56cf1ad599e9ac/image/images.png';
     document.querySelector('.gallery-logo').src = logoSrc;
 
     // Array of your image URLs
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://via.placeholder.com/200/A52A2A/FFFFFF?text=Image+14',
         'https://via.placeholder.com/200/D2691E/FFFFFF?text=Image+15',
         'https://via.placeholder.com/200/4B0082/FFFFFF?text=Image+16',
-        'https://via.placeholder.com/200/8B0000/FFFFFF?text=Image+17',
+        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/3e202a72af43bd5777493176ff56cf1ad599e9ac/image/img%2017.jpeg',
         'https://via.placeholder.com/200/2F4F4F/FFFFFF?text=Image+18',
         'https://via.placeholder.com/200/006400/FFFFFF?text=Image+19',
         'https://via.placeholder.com/200/B22222/FFFFFF?text=Image+20'
