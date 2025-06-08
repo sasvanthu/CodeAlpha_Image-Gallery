@@ -4,10 +4,12 @@ body {
     background-color: #1a1a1a; /* Dark background */
     color: #eee;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: flex-start; /* Align items from the top */
     align-items: center;
     min-height: 100vh;
     overflow: hidden; /* Prevent scrollbars */
+    padding-top: 30px; /* Add some top padding for content */
 }
 
 .gallery-container {
@@ -15,41 +17,70 @@ body {
     perspective: 1000px; /* For 3D effect */
     position: relative;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 50px;
+    font-size: 3.5em; /* Slightly larger title */
+    margin-bottom: 30px;
     color: #007bff; /* A nice blue for the title */
-    text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
+}
+
+.logo-container {
+    margin-bottom: 50px; /* Space between logo and first carousel */
+}
+
+.gallery-logo {
+    max-width: 250px; /* Enlarged logo size */
+    height: auto;
+    border-radius: 8px; /* Slightly rounded corners for the logo */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* More prominent shadow */
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-logo:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
 }
 
 .carousel-deck {
     position: relative;
-    width: 200px; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
-    margin: 50px auto;
+    width: 300px; /* Diameter of the carousel wheel */
+    height: 300px; /* Diameter of the carousel wheel */
+    margin: 40px auto; /* Space between carousels */
+    border-radius: 50%; /* Makes the container circular for visual cue */
     transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform-origin: 50% 50% -100px; /* Adjust based on image depth */
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* No transform-origin needed here, handled by image positioning */
+    border: 2px dashed rgba(255, 255, 255, 0.2); /* A subtle circular border */
+    box-shadow: inset 0 0 20px rgba(0, 123, 255, 0.2), 0 0 30px rgba(0, 123, 255, 0.3);
 }
 
 .carousel-deck img {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 80px; /* Size of individual images in the wheel */
+    height: 80px; /* Size of individual images in the wheel */
     object-fit: cover;
-    border-radius: 8px;
-    border: 3px solid #333;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 50%; /* Makes each image circular */
+    border: 3px solid #555;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
     cursor: pointer;
-    transition: transform 0.6s ease-in-out, border-color 0.3s;
+    transition: transform 0.3s ease-in-out, border-color 0.3s, box-shadow 0.3s;
+    /* Center the image within its rotated position */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* This will be overridden by JS transform */
+    backface-visibility: hidden; /* Prevent flickering on rotation */
 }
 
 .carousel-deck img:hover {
-    border-color: #007bff;
-    transform: scale(1.05);
+    border-color: #00aaff; /* Lighter blue on hover */
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.8);
+    transform: scale(1.1); /* Zoom effect will be added by JS, this is for border/shadow */
 }
+
 
 /* Lightbox styles */
 .lightbox {
@@ -61,7 +92,7 @@ h1 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95); /* Slightly darker background */
     justify-content: center;
     align-items: center;
 }
@@ -69,18 +100,18 @@ h1 {
 .lightbox-content {
     margin: auto;
     display: block;
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    max-width: 85%; /* Slightly larger lightbox image */
+    max-height: 85%; /* Slightly larger lightbox image */
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
 }
 
 .close-button {
     position: absolute;
-    top: 20px;
-    right: 35px;
+    top: 25px; /* Adjust position */
+    right: 40px; /* Adjust position */
     color: #f1f1f1;
-    font-size: 40px;
+    font-size: 45px; /* Larger close button */
     font-weight: bold;
     transition: 0.3s;
     cursor: pointer;
@@ -88,13 +119,14 @@ h1 {
 
 .close-button:hover,
 .close-button:focus {
-    color: #bbb;
+    color: #00aaff; /* Match hover color */
     text-decoration: none;
 }
 
 .caption {
     text-align: center;
     color: #ccc;
-    font-size: 1.2em;
-    padding: 10px 0;
+    font-size: 1.3em; /* Larger caption */
+    padding: 15px 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
