@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const caption = document.querySelector('.caption');
 
     // --- IMPORTANT: Update this with the actual path to your logo ---
-    const logoSrc = 'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/3e202a72af43bd5777493176ff56cf1ad599e9ac/image/images.png';
+    const logoSrc = 'image/images.png';
     document.querySelector('.gallery-logo').src = logoSrc;
 
     // Array of your image URLs
