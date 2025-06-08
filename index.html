@@ -1,133 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dark Image Gallery</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Gallery</title>
   <style>
-    /* --- DARK THEME RESET --- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      background-color: #121212;
-      color: #eee;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      margin: 0;
+      background: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
     }
 
-    /* --- HEADER --- */
-    .headerText {
-      padding: 20px;
+    h1 {
       text-align: center;
-    }
-    .headerText h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      color: transparent;
+      margin: 30px 0;
+      font-size: 2.8rem;
+      color: #00c6ff;
     }
 
-    /* --- FULLSCREEN OVERLAY --- */
-    .fullImageClass {
+    .carousel {
+      perspective: 1000px;
+      width: 100%;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel__container {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spin 20s infinite linear;
+    }
+
+    .carousel__item {
+      position: absolute;
+      width: 260px;
+      height: 160px;
+      left: 20px;
+      top: 70px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      cursor: pointer;
+    }
+
+    .carousel__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    /* Positioning images in a circle */
+    .carousel__item:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
+    .carousel__item:nth-child(2) { transform: rotateY(72deg) translateZ(400px); }
+    .carousel__item:nth-child(3) { transform: rotateY(144deg) translateZ(400px); }
+    .carousel__item:nth-child(4) { transform: rotateY(216deg) translateZ(400px); }
+    .carousel__item:nth-child(5) { transform: rotateY(288deg) translateZ(400px); }
+
+    /* Lightbox overlay */
+    .lightbox {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      flex-direction: column;
-    }
-    .fullImageClass img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    }
-    .fullImageClass #crossIcon {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    /* --- THUMBNAIL GALLERY --- */
-    .imageGallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      padding: 20px;
-      width: 100%;
-      max-width: 800px;
-    }
-    .imageGallery img {
-      width: 100%;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.3s, filter 0.3s;
-      filter: brightness(0.9);
-    }
-    .imageGallery img:hover {
-      transform: scale(1.05);
-      filter: brightness(1);
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="headerText">
-    <h1>Image Gallery</h1>
-  </div>
-
-  <!-- Fullscreen overlay -->
-  <div class="fullImageClass" id="fullImageBox">
-    <span id="crossIcon" onclick="closeFullImage()">✕</span>
-    <img id="fullImage" src="" alt="Expanded view">
-  </div>
-
-  <!-- Thumbnail grid with 4 images -->
-  <div class="imageGallery">
-    <img src="images/img1.jpg" alt="Image 1" onclick="openFullImage(this.src)">
-    <img src="images/img2.jpg" alt="Image 2" onclick="openFullImage(this.src)">
-    <img src="images/img3.jpg" alt="Image 3" onclick="openFullImage(this.src)">
-    <img src="images/img4.jpg" alt="Image 4" onclick="openFullImage(this.src)">
-  </div>
-
-  <script>
-    const fullBox = document.getElementById('fullImageBox');
-    const fullImg = document.getElementById('fullImage');
-
-    function openFullImage(src) {
-      fullImg.src = src;
-      fullBox.style.display = 'flex';
-    }
-
-    function closeFullImage() {
-      fullBox.style.display = 'none';
-      fullImg.src = '';
-    }
-
-    // Also close on ESC key
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && fullBox.style.display === 'flex') {
-        closeFullImage();
-      }
-    });
-  </script>
-
-</body>
-</html>
+      background: rgba(0,0,0,0.
