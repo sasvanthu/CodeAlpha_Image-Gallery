@@ -13,26 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of your image URLs
     // Replace these placeholder URLs with your actual image paths
     const images = [
-        'https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F414612%2Fpexels-photo-414612.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-souvenirpixels-414612.jpg%26fm%3Djpg&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbeautiful%2F&docid=B51x0PBR9KNzvM&tbnid=oXTudgfT3pqXSM&vet=12ahUKEwj-m_f2iuKNAxXvT2wGHQJVBagQM3oECBkQAA..i&w=5306&h=3770&hcb=2&ved=2ahUKEwj-m_f2iuKNAxXvT2wGHQJVBagQM3oECBkQAA',
-        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img2.png',
-        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img3.jpg',
-        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img4.jpg',
-        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/c0e4b60d8184bddb80e9e31ad064b71a57bc5e2a/image/img5.png',
-        'https://via.placeholder.com/200/33FFFF/000000?text=Image+6',
-        'https://via.placeholder.com/200/FF0000/FFFFFF?text=Image+7',
-        'https://via.placeholder.com/200/00FF00/FFFFFF?text=Image+8',
-        'https://via.placeholder.com/200/0000FF/FFFFFF?text=Image+9',
-        'https://via.placeholder.com/200/FFA500/FFFFFF?text=Image+10',
-        'https://via.placeholder.com/200/800080/FFFFFF?text=Image+11',
-        'https://via.placeholder.com/200/008080/FFFFFF?text=Image+12',
-        'https://via.placeholder.com/200/FFC0CB/000000?text=Image+13',
-        'https://via.placeholder.com/200/A52A2A/FFFFFF?text=Image+14',
-        'https://via.placeholder.com/200/D2691E/FFFFFF?text=Image+15',
-        'https://via.placeholder.com/200/4B0082/FFFFFF?text=Image+16',
-        'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/3e202a72af43bd5777493176ff56cf1ad599e9ac/image/img%2017.jpeg',
-        'https://via.placeholder.com/200/2F4F4F/FFFFFF?text=Image+18',
-        'https://via.placeholder.com/200/006400/FFFFFF?text=Image+19',
-        'https://via.placeholder.com/200/B22222/FFFFFF?text=Image+20'
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img1.png', // Corrected example for Image 1
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img2.png', // Corrected example for Image 2
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img3.jpg', // Corrected example for Image 3
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img4.jpg', // Corrected example for Image 4
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img5.png', // Corrected example for Image 5
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img6.png', // Assuming you have img6.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img7.png', // Assuming you have img7.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img8.png', // Assuming you have img8.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img9.png', // Assuming you have img9.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img10.png', // Assuming you have img10.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img11.png', // Assuming you have img11.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img12.png', // Assuming you have img12.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img13.png', // Assuming you have img13.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img14.png', // Assuming you have img14.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img15.png', // Assuming you have img15.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img16.png', // Assuming you have img16.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img17.jpeg', // Corrected example for Image 17
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img18.png', // Assuming you have img18.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img19.png', // Assuming you have img19.png
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img20.png'  // Assuming you have img20.png
     ];
 
     const totalImages = images.length;
