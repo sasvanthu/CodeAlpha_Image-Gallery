@@ -2,53 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Image Gallery</title>
   <style>
-    body {
+    /* DARK THEME & RESET */
+    * {
       margin: 0;
-      background: #121212;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
 
     h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 2.8rem;
-      color: #00c6ff;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      color: transparent;
+      user-select: none;
     }
 
+    /* CAROUSEL CONTAINER */
     .carousel {
-      perspective: 1000px;
+      perspective: 1200px;
       width: 100%;
-      height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      max-width: 700px;
+      height: 320px;
+      position: relative;
+      user-select: none;
     }
 
     .carousel__container {
       width: 300px;
-      height: 300px;
+      height: 180px;
+      margin: 0 auto;
       position: relative;
       transform-style: preserve-3d;
-      animation: spin 20s infinite linear;
+      animation: spin 20s linear infinite;
+      cursor: pointer;
     }
 
     .carousel__item {
       position: absolute;
-      width: 260px;
+      width: 280px;
       height: 160px;
-      left: 20px;
-      top: 70px;
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease;
-      border-radius: 10px;
+      left: 10px;
+      top: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8);
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      background-color: #222;
     }
 
     .carousel__item img {
@@ -56,6 +70,19 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      user-select: none;
+      pointer-events: none; /* prevent drag ghost */
+      transition: transform 0.3s ease;
+    }
+
+    .carousel__item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 20px 40px rgba(0, 198, 255, 0.7);
+      z-index: 10;
+      animation-play-state: paused;
+    }
+    .carousel__item:hover img {
+      transform: scale(1.05);
     }
 
     @keyframes spin {
@@ -67,18 +94,126 @@
       }
     }
 
-    /* Positioning images in a circle */
-    .carousel__item:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
-    .carousel__item:nth-child(2) { transform: rotateY(72deg) translateZ(400px); }
-    .carousel__item:nth-child(3) { transform: rotateY(144deg) translateZ(400px); }
-    .carousel__item:nth-child(4) { transform: rotateY(216deg) translateZ(400px); }
-    .carousel__item:nth-child(5) { transform: rotateY(288deg) translateZ(400px); }
+    /* Position items in a circle */
+    .carousel__item:nth-child(1) { transform: rotateY(0deg) translateZ(450px); }
+    .carousel__item:nth-child(2) { transform: rotateY(72deg) translateZ(450px); }
+    .carousel__item:nth-child(3) { transform: rotateY(144deg) translateZ(450px); }
+    .carousel__item:nth-child(4) { transform: rotateY(216deg) translateZ(450px); }
+    .carousel__item:nth-child(5) { transform: rotateY(288deg) translateZ(450px); }
 
-    /* Lightbox overlay */
+    /* LIGHTBOX STYLES */
     .lightbox {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      user-select: none;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(0, 198, 255, 0.9);
+      cursor: zoom-out;
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox #closeBtn {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      font-size: 3rem;
+      color: #00c6ff;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+      z-index: 10000;
+    }
+    .lightbox #closeBtn:hover {
+      color: #0099dd;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Gallery</h1>
+
+  <div class="carousel">
+    <div class="carousel__container" id="carouselContainer">
+      <div class="carousel__item"><img src="images/img1.jpg" alt="Image 1"></div>
+      <div class="carousel__item"><img src="images/img2.jpg" alt="Image 2"></div>
+      <div class="carousel__item"><img src="images/img3.jpg" alt="Image 3"></div>
+      <div class="carousel__item"><img src="images/img4.jpg" alt="Image 4"></div>
+      <div class="carousel__item"><img src="images/img5.jpg" alt="Image 5"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span id="closeBtn">&times;</span>
+    <img src="" alt="Zoomed Image" id="lightboxImg" />
+  </div>
+
+  <script>
+    const carousel = document.getElementById('carouselContainer');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Open lightbox on image click
+    carousel.querySelectorAll('.carousel__item img').forEach(img => {
+      img.addEventListener('click', e => {
+        e.stopPropagation();
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+      });
+    });
+
+    // Close lightbox on close button or background click
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+      document.body.style.overflow = ''; // restore scroll
+    }
+
+    // Pause carousel animation on hover or lightbox open
+    carousel.addEventListener('mouseenter', () => {
+      carousel.style.animationPlayState = 'paused';
+    });
+    carousel.addEventListener('mouseleave', () => {
+      carousel.style.animationPlayState = 'running';
+    });
+    lightbox.addEventListener('mouseenter', () => {
+      carousel.style.animationPlayState = 'paused';
+    });
+    lightbox.addEventListener('mouseleave', () => {
+      carousel.style.animationPlayState = 'running';
+    });
+  </script>
+
+</body>
+</html>
