@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
     const caption = document.querySelector('.caption');
 
+    // --- IMPORTANT: Update this with the actual path to your logo ---
+    const logoSrc = 'images/your-logo.png';
+    document.querySelector('.gallery-logo').src = logoSrc;
+
+    // Array of your image URLs
+    // Replace these placeholder URLs with your actual image paths
     const images = [
         'https://via.placeholder.com/200/FF5733/FFFFFF?text=Image+1',
         'https://via.placeholder.com/200/33FF57/FFFFFF?text=Image+2',
@@ -31,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalImages = images.length;
     const imagesPerDeck = totalImages / 2;
-    const rotationAngle = 360 / imagesPerDeck;
+    const rotationAngle = 360 / imagesPerDeck; // Angle between each image
+    const carouselRadius = 150; // Half of the carousel-deck width/height (300px / 2)
     let currentImageIndex = 0; // For lightbox navigation
 
     function createCarousel(deckElement, startIndex) {
@@ -39,31 +46,54 @@ document.addEventListener('DOMContentLoaded', () => {
             const img = document.createElement('img');
             img.src = images[startIndex + i];
             img.alt = `Gallery Image ${startIndex + i + 1}`;
-            const angle = i * rotationAngle;
-            img.style.transform = `rotateY(${angle}deg) translateZ(250px)`; // Adjust translateZ for depth
+
+            const angleRad = (i * rotationAngle) * (Math.PI / 180); // Convert angle to radians
+
+            // Calculate x and z positions for a circular arrangement
+            // x represents horizontal position, z represents depth
+            const x = carouselRadius * Math.sin(angleRad);
+            const z = carouselRadius * Math.cos(angleRad);
+
+            // Position the image. The translate(-50%, -50%) from CSS ensures it's centered.
+            // The rotateY makes the image face outwards from the center of the wheel.
+            // The translateZ moves it to the edge of the circle.
+            img.style.transform = `
+                translateX(${x}px)
+                translateZ(${z}px)
+                rotateY(${-i * rotationAngle}deg) /* Rotate image itself to face viewer, counteracting wheel rotation */
+            `;
+            // Note: The `rotateY` applied here to the image helps keep its front facing roughly forward
+            // relative to the viewer as the parent carousel spins. Adjust as needed for desired effect.
+
+
             deckElement.appendChild(img);
 
+            // Add click listener for lightbox
             img.addEventListener('click', () => {
                 openLightbox(startIndex + i);
             });
         }
     }
 
+    // Populate the carousels
     createCarousel(carousel1, 0);
     createCarousel(carousel2, imagesPerDeck);
 
     let currentRotation1 = 0;
     let currentRotation2 = 0;
+    const rotationSpeed = 0.3; // Adjust for desired rotation speed (degrees per frame)
 
     function rotateCarousels() {
-        currentRotation1 += 0.2; // Adjust speed
-        currentRotation2 -= 0.2; // Adjust speed, rotate in opposite direction
+        currentRotation1 += rotationSpeed; // First carousel rotates clockwise
+        currentRotation2 -= rotationSpeed; // Second carousel rotates counter-clockwise
+
         carousel1.style.transform = `rotateY(${currentRotation1}deg)`;
         carousel2.style.transform = `rotateY(${currentRotation2}deg)`;
-        requestAnimationFrame(rotateCarousels);
+
+        requestAnimationFrame(rotateCarousels); // Continue animation
     }
 
-    rotateCarousels();
+    rotateCarousels(); // Start the rotation animation
 
     // Lightbox functionality
     function openLightbox(index) {
@@ -79,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeButton.addEventListener('click', closeLightbox);
 
+    // Close lightbox if clicking outside the image
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
@@ -87,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Keyboard navigation for lightbox
     document.addEventListener('keydown', (e) => {
-        if (lightbox.style.display === 'flex') {
+        if (lightbox.style.display === 'flex') { // Only navigate if lightbox is open
             if (e.key === 'ArrowRight' || e.key === ' ') { // Right arrow or spacebar
                 currentImageIndex = (currentImageIndex + 1) % totalImages;
                 openLightbox(currentImageIndex);
