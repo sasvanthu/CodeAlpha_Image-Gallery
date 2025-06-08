@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img14.jpeg', // Assuming you have img14.png
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img15.jpeg', // Assuming you have img15.png
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img16.jpeg', // Assuming you have img16.png
-        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img17.jpeg', // Corrected example for Image 17
+        'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img17.jpg', // Corrected example for Image 17
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img18.jpeg', // Assuming you have img18.png
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img19.jpeg', // Assuming you have img19.png
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img20.jpeg'  // Assuming you have img20.png
