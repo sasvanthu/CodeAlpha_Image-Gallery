@@ -17,8 +17,8 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
-  margin-bottom: 40px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
   background: linear-gradient(90deg, #00c6ff, #0072ff);
   -webkit-background-clip: text;
   color: transparent;
@@ -29,19 +29,19 @@ h1 {
 .carousel {
   perspective: 1200px;
   width: 100%;
-  max-width: 700px;
-  height: 320px;
+  max-width: 800px;
+  height: 280px;  /* reduced height to show heading */
   position: relative;
   user-select: none;
 }
 
 .carousel__container {
-  width: 300px;
+  width: 320px;
   height: 180px;
   margin: 0 auto;
   position: relative;
   transform-style: preserve-3d;
-  animation: spin 20s linear infinite;
+  animation: spin 30s linear infinite;
   cursor: pointer;
 }
 
@@ -49,7 +49,7 @@ h1 {
   position: absolute;
   width: 280px;
   height: 160px;
-  left: 10px;
+  left: 20px;
   top: 10px;
   border-radius: 12px;
   overflow: hidden;
@@ -87,12 +87,17 @@ h1 {
   }
 }
 
-/* Position items in a circle */
-.carousel__item:nth-child(1) { transform: rotateY(0deg) translateZ(450px); }
-.carousel__item:nth-child(2) { transform: rotateY(72deg) translateZ(450px); }
-.carousel__item:nth-child(3) { transform: rotateY(144deg) translateZ(450px); }
-.carousel__item:nth-child(4) { transform: rotateY(216deg) translateZ(450px); }
-.carousel__item:nth-child(5) { transform: rotateY(288deg) translateZ(450px); }
+/* Position items in a 10-item circle */
+.carousel__item:nth-child(1)  { transform: rotateY(0deg)   translateZ(500px); }
+.carousel__item:nth-child(2)  { transform: rotateY(36deg)  translateZ(500px); }
+.carousel__item:nth-child(3)  { transform: rotateY(72deg)  translateZ(500px); }
+.carousel__item:nth-child(4)  { transform: rotateY(108deg) translateZ(500px); }
+.carousel__item:nth-child(5)  { transform: rotateY(144deg) translateZ(500px); }
+.carousel__item:nth-child(6)  { transform: rotateY(180deg) translateZ(500px); }
+.carousel__item:nth-child(7)  { transform: rotateY(216deg) translateZ(500px); }
+.carousel__item:nth-child(8)  { transform: rotateY(252deg) translateZ(500px); }
+.carousel__item:nth-child(9)  { transform: rotateY(288deg) translateZ(500px); }
+.carousel__item:nth-child(10) { transform: rotateY(324deg) translateZ(500px); }
 
 /* LIGHTBOX STYLES */
 .lightbox {
