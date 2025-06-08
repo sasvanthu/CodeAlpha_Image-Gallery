@@ -6,12 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
     const caption = document.querySelector('.caption');
 
-    // --- IMPORTANT: Update this with the actual path to your logo ---
-    const logoSrc = 'https://github.com/sasvanthu/CodeAlpha_Image-Gallery/blob/b7e5d9550969e4aca24cb5719668b9bd2f5879bd/image/images.png';
+    // --- IMPORTANT: Update this with the actual RAW or GITHUB PAGES URL for your logo ---
+    // Example using GitHub Pages permalink:
+    const logoSrc = 'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/images.png';
+    // Example using GitHub Raw content URL:
+    // const logoSrc = 'https://raw.githubusercontent.com/sasvanthu/CodeAlpha_Image-Gallery/main/image/images.png';
     document.querySelector('.gallery-logo').src = logoSrc;
 
     // Array of your image URLs
-    // Replace these placeholder URLs with your actual image paths
+    // REPLACE ALL THESE URLs with your actual RAW or GITHUB PAGES image links
     const images = [
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img1.png', // Corrected example for Image 1
         'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/img2.png', // Corrected example for Image 2
@@ -37,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalImages = images.length;
     const imagesPerDeck = totalImages / 2;
-    const rotationAngle = 360 / imagesPerDeck; // Angle between each image
-    const carouselRadius = 150; // Half of the carousel-deck width/height (300px / 2)
-    let currentImageIndex = 0; // For lightbox navigation
+    const rotationAngle = 360 / imagesPerDeck;
+    const carouselRadius = 150;
+    let currentImageIndex = 0;
 
     function createCarousel(deckElement, startIndex) {
         for (let i = 0; i < imagesPerDeck; i++) {
@@ -47,55 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
             img.src = images[startIndex + i];
             img.alt = `Gallery Image ${startIndex + i + 1}`;
 
-            const angleRad = (i * rotationAngle) * (Math.PI / 180); // Convert angle to radians
+            const angleRad = (i * rotationAngle) * (Math.PI / 180);
 
-            // Calculate x and z positions for a circular arrangement
-            // x represents horizontal position, z represents depth
             const x = carouselRadius * Math.sin(angleRad);
             const z = carouselRadius * Math.cos(angleRad);
 
-            // Position the image. The translate(-50%, -50%) from CSS ensures it's centered.
-            // The rotateY makes the image face outwards from the center of the wheel.
-            // The translateZ moves it to the edge of the circle.
             img.style.transform = `
                 translateX(${x}px)
                 translateZ(${z}px)
-                rotateY(${-i * rotationAngle}deg) /* Rotate image itself to face viewer, counteracting wheel rotation */
+                rotateY(${-i * rotationAngle}deg)
             `;
-            // Note: The `rotateY` applied here to the image helps keep its front facing roughly forward
-            // relative to the viewer as the parent carousel spins. Adjust as needed for desired effect.
-
 
             deckElement.appendChild(img);
 
-            // Add click listener for lightbox
             img.addEventListener('click', () => {
                 openLightbox(startIndex + i);
             });
         }
     }
 
-    // Populate the carousels
     createCarousel(carousel1, 0);
     createCarousel(carousel2, imagesPerDeck);
 
     let currentRotation1 = 0;
     let currentRotation2 = 0;
-    const rotationSpeed = 0.3; // Adjust for desired rotation speed (degrees per frame)
+    const rotationSpeed = 0.3;
 
     function rotateCarousels() {
-        currentRotation1 += rotationSpeed; // First carousel rotates clockwise
-        currentRotation2 -= rotationSpeed; // Second carousel rotates counter-clockwise
+        currentRotation1 += rotationSpeed;
+        currentRotation2 -= rotationSpeed;
 
         carousel1.style.transform = `rotateY(${currentRotation1}deg)`;
         carousel2.style.transform = `rotateY(${currentRotation2}deg)`;
 
-        requestAnimationFrame(rotateCarousels); // Continue animation
+        requestAnimationFrame(rotateCarousels);
     }
 
-    rotateCarousels(); // Start the rotation animation
+    rotateCarousels();
 
-    // Lightbox functionality
     function openLightbox(index) {
         currentImageIndex = index;
         lightboxImg.src = images[currentImageIndex];
@@ -109,23 +101,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeButton.addEventListener('click', closeLightbox);
 
-    // Close lightbox if clicking outside the image
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
-    // Keyboard navigation for lightbox
     document.addEventListener('keydown', (e) => {
-        if (lightbox.style.display === 'flex') { // Only navigate if lightbox is open
-            if (e.key === 'ArrowRight' || e.key === ' ') { // Right arrow or spacebar
+        if (lightbox.style.display === 'flex') {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
                 currentImageIndex = (currentImageIndex + 1) % totalImages;
                 openLightbox(currentImageIndex);
-            } else if (e.key === 'ArrowLeft') { // Left arrow
+            } else if (e.key === 'ArrowLeft') {
                 currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
                 openLightbox(currentImageIndex);
-            } else if (e.key === 'Escape') { // Escape key
+            } else if (e.key === 'Escape') {
                 closeLightbox();
             }
         }
