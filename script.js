@@ -1,17 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {More actions
     const carousel1 = document.getElementById('carousel1');
     const carousel2 = document.getElementById('carousel2');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeButton = document.querySelector('.close-button');
     const caption = document.querySelector('.caption');
-     RAW or GITHUB PAGES URL for your logo ---Add commentMore actions
+
+    // --- IMPORTANT: Update this with the actual RAW or GITHUB PAGES URL for your logo ---
     // Example using GitHub Pages permalink:
     const logoSrc = 'https://sasvanthu.github.io/CodeAlpha_Image-Gallery/image/images.png';
     // Example using GitHub Raw content URL:
     // const logoSrc = 'https://raw.githubusercontent.com/sasvanthu/CodeAlpha_Image-Gallery/main/image/images.png';
     document.querySelector('.gallery-logo').src = logoSrc;
-
 
     // Array of your image URLs
     // REPLACE ALL THESE URLs with your actual RAW or GITHUB PAGES image links
