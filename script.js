@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {More actions
+document.addEventListener('DOMContentLoaded', () => {
     const carousel1 = document.getElementById('carousel1');
     const carousel2 = document.getElementById('carousel2');
     const lightbox = document.getElementById('lightbox');
